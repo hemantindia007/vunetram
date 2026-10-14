@@ -6,29 +6,20 @@ const trustBadges = ['AWS', 'Microsoft Azure', 'Google Cloud', 'Kubernetes']
 
 export default function Hero() {
   const { index, setIndex, next, prev, pause, resume } = useCarousel(heroSlides.length, {
-    interval: 6000,
+    interval: 7500,
   })
 
   return (
     <section id="home" className="relative overflow-hidden">
-      {/* clean light canvas */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="bg-fade-hero absolute inset-0" />
-        <div className="animate-drift absolute -left-28 top-0 h-80 w-80 rounded-full bg-brand-300/35 blur-3xl" />
-        <div className="animate-drift-slow absolute right-0 top-24 h-96 w-96 rounded-full bg-accent-300/30 blur-3xl" />
-        <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              'linear-gradient(to right, #0f204e 1px, transparent 1px), linear-gradient(to bottom, #0f204e 1px, transparent 1px)',
-            backgroundSize: '56px 56px',
-            maskImage: 'radial-gradient(circle at 35% 25%, #000 45%, transparent 90%)',
-            WebkitMaskImage: 'radial-gradient(circle at 35% 25%, #000 45%, transparent 90%)',
-          }}
-        />
+      {/* glassy animated color-mesh canvas */}
+      <div className="hero-mesh pointer-events-none absolute inset-0 z-0">
+        <span className="blob blob-1" />
+        <span className="blob blob-2" />
+        <span className="blob blob-3" />
+        <span className="veil" />
       </div>
 
-      <div className="container relative grid items-center gap-10 pb-16 pt-32 lg:grid-cols-2 lg:gap-14 lg:pb-20 lg:pt-36">
+      <div className="container relative z-10 grid items-center gap-10 pb-16 pt-32 lg:grid-cols-2 lg:gap-14 lg:pb-20 lg:pt-36">
         {/* left: slider */}
         <div
           className="relative animate-fade-up"
@@ -45,10 +36,10 @@ export default function Hero() {
               return (
                 <div
                   key={slide.title + i}
-                  className={`transition-all duration-700 ease-out ${
+                  className={`transition-all ease-out ${
                     active
-                      ? 'relative opacity-100 translate-y-0'
-                      : 'pointer-events-none absolute inset-0 translate-y-3 opacity-0'
+                      ? 'relative z-10 translate-y-0 opacity-100 duration-500 delay-200'
+                      : 'pointer-events-none absolute inset-0 z-0 translate-y-2 opacity-0 duration-200'
                   }`}
                   aria-hidden={!active}
                   role="group"
@@ -191,7 +182,7 @@ export default function Hero() {
       </div>
 
       {/* stats strip */}
-      <div className="relative border-y border-slate-200/70 bg-white/60 backdrop-blur-sm">
+      <div className="relative z-10 border-y border-slate-200/70 bg-white/60 backdrop-blur-sm">
         <dl className="container grid grid-cols-2 gap-6 py-8 sm:grid-cols-4">
           {[
             ['120+', 'Workloads migrated'],

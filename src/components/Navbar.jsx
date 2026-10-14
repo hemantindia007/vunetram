@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { nav } from '../data'
-import AnimatedLogo from './AnimatedLogo'
+import LogoMark from './LogoMark'
 
 function Logo({ scrolled }) {
   return (
     <Link to="/" className="flex items-center" aria-label="Vunetram Technologies — home">
-      <AnimatedLogo
-        className={`transition-all duration-300 ${scrolled ? 'w-32' : 'w-40'}`}
-      />
+      <LogoMark imgClassName={`w-auto transition-all duration-300 ${scrolled ? 'h-16' : 'h-24'}`} />
     </Link>
   )
 }

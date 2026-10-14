@@ -112,22 +112,38 @@ body {
   .bg-flow-dark { animation: none; }
 }
 
-/* Eagle "flying" animation: gentle 3D flap + hover drift */
-@keyframes eagle-fly {
-  0%   { transform: perspective(700px) translateY(0) rotateX(0deg) rotateZ(0deg) scaleY(1); }
-  25%  { transform: perspective(700px) translateY(-10px) rotateX(8deg) rotateZ(-1.5deg) scaleY(0.96); }
-  50%  { transform: perspective(700px) translateY(-16px) rotateX(0deg) rotateZ(0deg) scaleY(1.02); }
-  75%  { transform: perspective(700px) translateY(-10px) rotateX(8deg) rotateZ(1.5deg) scaleY(0.96); }
-  100% { transform: perspective(700px) translateY(0) rotateX(0deg) rotateZ(0deg) scaleY(1); }
+/* Legacy raster wing flap (kept for compatibility) */
+@keyframes wing-flap {
+  0%   { transform: rotate(0deg) scaleY(1); }
+  30%  { transform: rotate(-11deg) scaleY(0.9); }
+  55%  { transform: rotate(4deg) scaleY(1.04); }
+  80%  { transform: rotate(-3deg) scaleY(0.98); }
+  100% { transform: rotate(0deg) scaleY(1); }
 }
-.animate-eagle-fly {
-  animation: eagle-fly 4.5s ease-in-out infinite;
-  transform-origin: 50% 70%;
+.animate-wing-flap {
+  animation: wing-flap 3s ease-in-out infinite;
+  transform-origin: 56% 32%;
+  will-change: transform;
+}
+
+/* Per-feather flap: each feather lifts/rotates from the shoulder, staggered
+   by its own --d delay so the wing ripples like a bird fanning its feathers. */
+@keyframes feather-flap {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  40%      { transform: rotate(-13deg) translateY(-2px); }
+  70%      { transform: rotate(5deg) translateY(1px); }
+}
+.feather {
+  transform-box: fill-box;
+  transform-origin: 100% 100%; /* shoulder end of each feather path */
+  animation: feather-flap 2.6s ease-in-out infinite;
+  animation-delay: var(--d, 0ms);
   will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-eagle-fly { animation: none; }
+  .animate-wing-flap { animation: none; }
+  .feather { animation: none; }
 }
 
 /* Slow drifting glow for hero orbs */
@@ -252,10 +268,57 @@ body {
 /* Per-section fade themes — each a soft, readable light gradient tint. */
 .bg-fade-hero {
   background:
-    radial-gradient(760px 560px at 6% -10%, rgba(51, 119, 255, 0.28), transparent 60%),
-    radial-gradient(720px 560px at 100% -4%, rgba(42, 216, 224, 0.26), transparent 58%),
-    radial-gradient(680px 620px at 92% 108%, rgba(99, 102, 241, 0.18), transparent 60%),
-    linear-gradient(165deg, #eef4ff 0%, #ecfbff 45%, #ffffff 100%);
+    radial-gradient(1400px 900px at 85% -30%, #dff0ff 0%, rgba(223, 240, 255, 0) 60%),
+    linear-gradient(180deg, #eaf2ff 0%, #f4f8ff 50%, #ffffff 100%);
+}
+
+/* Glassy animated color-mesh hero background. Soft blooms slowly drift and
+   fade into each other for a premium, non-boxy, 3D-glass feel. */
+@keyframes mesh-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  33%  { transform: translate3d(4%, -3%, 0) scale(1.1); }
+  66%  { transform: translate3d(-3%, 4%, 0) scale(0.95); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #eef4ff 0%, #f5f9ff 55%, #ffffff 100%);
+}
+.hero-mesh .blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.85;
+  will-change: transform;
+}
+.hero-mesh .blob-1 { /* blue — upper left, in view */
+  width: 40rem; height: 40rem; left: -6%; top: 2%;
+  background: radial-gradient(circle at 50% 50%, rgba(51,119,255,0.6), rgba(51,119,255,0) 70%);
+  animation: mesh-drift 18s ease-in-out infinite;
+}
+.hero-mesh .blob-2 { /* cyan — upper right behind dashboard */
+  width: 40rem; height: 40rem; right: -4%; top: -4%;
+  background: radial-gradient(circle at 50% 50%, rgba(42,216,224,0.55), rgba(42,216,224,0) 70%);
+  animation: mesh-drift 22s ease-in-out infinite reverse;
+}
+.hero-mesh .blob-3 { /* violet — center/right, lower */
+  width: 34rem; height: 34rem; right: 24%; top: 38%;
+  background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.33), rgba(124,58,237,0) 70%);
+  animation: mesh-drift 26s ease-in-out infinite;
+}
+/* gentle veil: just enough to keep text readable; fades to white near the bottom */
+.hero-mesh .veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 55% at 32% 42%, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%),
+    linear-gradient(180deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.6) 82%, #ffffff 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mesh .blob { animation: none; }
 }
 .bg-fade-blue {
   background:
@@ -318,19 +381,5 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(900px 700px at 10% -5%, rgba(51, 119, 255, 0.22), transparent 55%),
-    radial-gradient(820px 680px at 95% 8%, rgba(42, 216, 224, 0.2), transparent 55%),
-    radial-gradient(900px 820px at 90% 100%, rgba(99, 102, 241, 0.16), transparent 58%),
-    linear-gradient(170deg, #eaf1ff 0%, #eef4ff 45%, #f6faff 100%);
-}
-.site-backdrop::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  background-image:
-    linear-gradient(to right, #0f204e 1px, transparent 1px),
-    linear-gradient(to bottom, #0f204e 1px, transparent 1px);
-  background-size: 56px 56px;
+  background: #ffffff;
 }
