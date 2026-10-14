@@ -1,0 +1,336 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 8.5rem;
+}
+
+body {
+  @apply bg-white text-ink-900 antialiased font-sans;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand-200 px-6 py-3 text-sm font-semibold text-brand-700 transition hover:border-brand-400 hover:bg-brand-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700;
+  }
+  .section {
+    @apply py-20 sm:py-24;
+  }
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/60;
+  }
+
+  /* Glassmorphism surfaces */
+  .glass {
+    @apply border border-white/60 bg-white/60 backdrop-blur-xl;
+    box-shadow: 0 10px 30px -12px rgba(15, 32, 78, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+  .glass-strong {
+    @apply border border-white/70 bg-white/80 backdrop-blur-2xl;
+    box-shadow: 0 20px 50px -18px rgba(15, 32, 78, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  .glass-card {
+    @apply rounded-3xl border border-white/60 bg-white/60 p-6 backdrop-blur-xl transition duration-300;
+    box-shadow: 0 12px 36px -14px rgba(15, 32, 78, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+  .glass-card:hover {
+    @apply -translate-y-1.5;
+    box-shadow: 0 26px 60px -16px rgba(26, 86, 240, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Animated gradient text */
+@keyframes gradient-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.text-gradient-animated {
+  background-image: linear-gradient(90deg, #1a56f0, #06b6c4, #3377ff, #2ad8e0);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 6s ease infinite;
+}
+
+/* Marquee for the trusted-by row */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee-pause:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Animated flowing gradient for dark feature bands */
+@keyframes hue-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.bg-flow-dark {
+  background-image: linear-gradient(120deg, #0f204e, #1442cc, #0891a2, #183581, #0f204e);
+  background-size: 300% 300%;
+  animation: hue-flow 18s ease infinite;
+}
+
+/* Edge fades to blend a dark section into the light sections around it.
+   Place as absolutely-positioned children at the section's top/bottom. */
+.fade-top-light {
+  background: linear-gradient(to bottom, #eef4ff, rgba(238, 244, 255, 0));
+}
+.fade-bottom-light {
+  background: linear-gradient(to top, #eef4ff, rgba(238, 244, 255, 0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-flow-dark { animation: none; }
+}
+
+/* Eagle "flying" animation: gentle 3D flap + hover drift */
+@keyframes eagle-fly {
+  0%   { transform: perspective(700px) translateY(0) rotateX(0deg) rotateZ(0deg) scaleY(1); }
+  25%  { transform: perspective(700px) translateY(-10px) rotateX(8deg) rotateZ(-1.5deg) scaleY(0.96); }
+  50%  { transform: perspective(700px) translateY(-16px) rotateX(0deg) rotateZ(0deg) scaleY(1.02); }
+  75%  { transform: perspective(700px) translateY(-10px) rotateX(8deg) rotateZ(1.5deg) scaleY(0.96); }
+  100% { transform: perspective(700px) translateY(0) rotateX(0deg) rotateZ(0deg) scaleY(1); }
+}
+.animate-eagle-fly {
+  animation: eagle-fly 4.5s ease-in-out infinite;
+  transform-origin: 50% 70%;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-eagle-fly { animation: none; }
+}
+
+/* Slow drifting glow for hero orbs */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -24px) scale(1.08); }
+}
+.animate-drift { animation: drift 14s ease-in-out infinite; }
+.animate-drift-slow { animation: drift 20s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient-animated { animation: none; }
+  .marquee-track { animation: none; }
+  .animate-drift, .animate-drift-slow { animation: none; }
+}
+
+/* 3D card: perspective wrapper + layered depth + top sheen */
+.card-3d {
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+  box-shadow:
+    0 2px 4px rgba(15, 32, 78, 0.06),
+    0 10px 20px -8px rgba(15, 32, 78, 0.18),
+    0 30px 50px -20px rgba(15, 32, 78, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.card-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 45%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.card-3d:hover {
+  box-shadow:
+    0 4px 8px rgba(26, 86, 240, 0.1),
+    0 18px 32px -10px rgba(26, 86, 240, 0.28),
+    0 46px 70px -24px rgba(26, 86, 240, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+.card-3d > * {
+  transform: translateZ(28px);
+}
+
+/* Dark variant of the 3D card for use on dark sections */
+.card-3d-dark {
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 12px 24px -8px rgba(0, 0, 0, 0.45),
+    0 36px 60px -24px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.card-3d-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 42%);
+  pointer-events: none;
+}
+.card-3d-dark:hover {
+  box-shadow:
+    0 4px 10px rgba(42, 216, 224, 0.15),
+    0 22px 40px -12px rgba(26, 86, 240, 0.4),
+    0 56px 90px -30px rgba(42, 216, 224, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+.card-3d-dark > * {
+  transform: translateZ(28px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-3d { transition: box-shadow 0.3s ease; }
+  .card-3d-dark { transition: box-shadow 0.3s ease; }
+}
+
+/* Gradient-border glass card (shows a soft colored ring on hover) */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(51, 119, 255, 0.6), rgba(42, 216, 224, 0.5));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Richer mesh-gradient backdrop used across the page for the glassy / 3D feel */
+.bg-aurora {
+  background:
+    radial-gradient(680px 480px at 8% -8%, rgba(51, 119, 255, 0.28), transparent 60%),
+    radial-gradient(620px 460px at 100% 2%, rgba(42, 216, 224, 0.26), transparent 58%),
+    radial-gradient(720px 620px at 85% 100%, rgba(99, 102, 241, 0.18), transparent 60%),
+    radial-gradient(640px 560px at 10% 110%, rgba(51, 119, 255, 0.16), transparent 60%),
+    linear-gradient(165deg, #eef4ff 0%, #e8f0ff 40%, #f4f9ff 100%);
+}
+
+/* Deeper variant for feature bands if needed */
+.bg-aurora-deep {
+  background:
+    radial-gradient(600px 440px at 0% 0%, rgba(26, 86, 240, 0.35), transparent 58%),
+    radial-gradient(600px 440px at 100% 100%, rgba(42, 216, 224, 0.3), transparent 58%),
+    linear-gradient(160deg, #e6eeff 0%, #eef4ff 60%, #ffffff 100%);
+}
+
+/* Per-section fade themes — each a soft, readable light gradient tint. */
+.bg-fade-hero {
+  background:
+    radial-gradient(760px 560px at 6% -10%, rgba(51, 119, 255, 0.28), transparent 60%),
+    radial-gradient(720px 560px at 100% -4%, rgba(42, 216, 224, 0.26), transparent 58%),
+    radial-gradient(680px 620px at 92% 108%, rgba(99, 102, 241, 0.18), transparent 60%),
+    linear-gradient(165deg, #eef4ff 0%, #ecfbff 45%, #ffffff 100%);
+}
+.bg-fade-blue {
+  background:
+    radial-gradient(620px 440px at 10% -8%, rgba(51, 119, 255, 0.22), transparent 60%),
+    radial-gradient(560px 420px at 100% 0%, rgba(99, 102, 241, 0.16), transparent 58%),
+    linear-gradient(170deg, #eef4ff 0%, #f4f8ff 60%, #ffffff 100%);
+}
+.bg-fade-cyan {
+  background:
+    radial-gradient(620px 440px at 0% 0%, rgba(42, 216, 224, 0.26), transparent 60%),
+    radial-gradient(560px 420px at 100% 100%, rgba(6, 182, 196, 0.16), transparent 58%),
+    linear-gradient(170deg, #ecfdff 0%, #f0fbff 60%, #ffffff 100%);
+}
+.bg-fade-violet {
+  background:
+    radial-gradient(620px 440px at 12% -6%, rgba(124, 58, 237, 0.2), transparent 60%),
+    radial-gradient(560px 420px at 100% 10%, rgba(51, 119, 255, 0.16), transparent 58%),
+    linear-gradient(170deg, #f3f0ff 0%, #f6f3ff 60%, #ffffff 100%);
+}
+.bg-fade-sky {
+  background:
+    radial-gradient(620px 440px at 100% -8%, rgba(14, 165, 233, 0.2), transparent 60%),
+    radial-gradient(560px 420px at 0% 100%, rgba(51, 119, 255, 0.14), transparent 58%),
+    linear-gradient(170deg, #eef7ff 0%, #f3f9ff 60%, #ffffff 100%);
+}
+.bg-fade-mint {
+  background:
+    radial-gradient(620px 440px at 8% -6%, rgba(16, 185, 129, 0.18), transparent 60%),
+    radial-gradient(560px 420px at 100% 100%, rgba(42, 216, 224, 0.16), transparent 58%),
+    linear-gradient(170deg, #ecfdf5 0%, #f1fdf9 60%, #ffffff 100%);
+}
+.bg-fade-amber {
+  background:
+    radial-gradient(620px 440px at 10% -8%, rgba(245, 158, 11, 0.16), transparent 60%),
+    radial-gradient(560px 420px at 100% 0%, rgba(251, 146, 60, 0.14), transparent 58%),
+    linear-gradient(170deg, #fff8ee 0%, #fffaf2 60%, #ffffff 100%);
+}
+.bg-fade-rose {
+  background:
+    radial-gradient(620px 440px at 100% -6%, rgba(244, 63, 94, 0.14), transparent 60%),
+    radial-gradient(560px 420px at 0% 100%, rgba(236, 72, 153, 0.14), transparent 58%),
+    linear-gradient(170deg, #fff1f5 0%, #fff5f8 60%, #ffffff 100%);
+}
+.bg-fade-indigo {
+  background:
+    radial-gradient(620px 440px at 8% -8%, rgba(79, 70, 229, 0.2), transparent 60%),
+    radial-gradient(560px 420px at 100% 100%, rgba(51, 119, 255, 0.16), transparent 58%),
+    linear-gradient(170deg, #eef0ff 0%, #f3f4ff 60%, #ffffff 100%);
+}
+.bg-fade-slate {
+  background:
+    radial-gradient(620px 440px at 100% 0%, rgba(100, 116, 139, 0.14), transparent 60%),
+    radial-gradient(560px 420px at 0% 100%, rgba(51, 119, 255, 0.12), transparent 58%),
+    linear-gradient(170deg, #f1f5fb 0%, #f5f8fc 60%, #ffffff 100%);
+}
+
+/* Fixed, full-page backdrop so every section shares one cohesive canvas */
+.site-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 700px at 10% -5%, rgba(51, 119, 255, 0.22), transparent 55%),
+    radial-gradient(820px 680px at 95% 8%, rgba(42, 216, 224, 0.2), transparent 55%),
+    radial-gradient(900px 820px at 90% 100%, rgba(99, 102, 241, 0.16), transparent 58%),
+    linear-gradient(170deg, #eaf1ff 0%, #eef4ff 45%, #f6faff 100%);
+}
+.site-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    linear-gradient(to right, #0f204e 1px, transparent 1px),
+    linear-gradient(to bottom, #0f204e 1px, transparent 1px);
+  background-size: 56px 56px;
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="CI/CD pipeline illustration">
+  <defs>
+    <linearGradient id="bgS" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1442cc"/>
+      <stop offset="1" stop-color="#2ad8e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bgS)"/>
+  <g opacity="0.12" stroke="#ffffff" stroke-width="1">
+    <path d="M0 90H640M0 180H640M0 270H640"/>
+    <path d="M128 0V360M256 0V360M384 0V360M512 0V360"/>
+  </g>
+  <!-- pipeline track -->
+  <path d="M70 180H570" stroke="#ffffff" stroke-width="4" opacity="0.5" stroke-dasharray="2 14" stroke-linecap="round"/>
+  <!-- stages -->
+  <g font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle">
+    <g transform="translate(110 180)">
+      <circle r="34" fill="#ffffff"/>
+      <path d="M-10 0 -2 8 12 -8" stroke="#1a56f0" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text y="58" fill="#ffffff">Code</text>
+    </g>
+    <g transform="translate(260 180)">
+      <circle r="34" fill="#ffffff"/>
+      <rect x="-14" y="-12" width="28" height="24" rx="4" fill="none" stroke="#1a56f0" stroke-width="4"/>
+      <text y="58" fill="#ffffff">Build</text>
+    </g>
+    <g transform="translate(410 180)">
+      <circle r="34" fill="#ffffff"/>
+      <path d="M-12 -10 12 -10 0 12Z" fill="none" stroke="#06b6c4" stroke-width="4" stroke-linejoin="round"/>
+      <text y="58" fill="#ffffff">Test</text>
+    </g>
+    <g transform="translate(560 180)">
+      <circle r="34" fill="#ffffff"/>
+      <path d="M0 -14V8M-10 -2 0 8 10 -2" stroke="#1a56f0" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text y="58" fill="#ffffff">Deploy</text>
+    </g>
+  </g>
+  <!-- speed chip -->
+  <g transform="translate(70 60)">
+    <rect x="0" y="0" width="150" height="40" rx="20" fill="#ffffff" opacity="0.92"/>
+    <text x="20" y="26" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" fill="#1a56f0">10x faster</text>
+  </g>
+</svg>

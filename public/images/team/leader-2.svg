@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Leadership portrait">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1442cc"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" fill="url(#bg2)"/>
+  <circle cx="120" cy="86" r="110" fill="#ffffff" opacity="0.07"/>
+  <path d="M44 240c0-44 34-72 76-72s76 28 76 72Z" fill="#e9e4ff"/>
+  <path d="M44 240c0-44 34-72 76-72s76 28 76 72Z" fill="#1f2740" opacity="0.08"/>
+  <rect x="103" y="142" width="34" height="36" rx="15" fill="#d8a97e"/>
+  <circle cx="120" cy="108" r="41" fill="#e3b48a"/>
+  <!-- short hair -->
+  <path d="M79 106a41 41 0 0 1 82 0c0-12-7-29-19-36-7-4-17-5-22-5s-15 1-22 5c-12 7-19 24-19 36Z" fill="#1c1c22"/>
+  <!-- beard -->
+  <path d="M84 120c2 17 17 29 36 29s34-12 36-29c-5 12-19 17-36 17s-31-5-36-17Z" fill="#1c1c22"/>
+  <circle cx="106" cy="106" r="3" fill="#1c1c22"/>
+  <circle cx="134" cy="106" r="3" fill="#1c1c22"/>
+  <path d="M100 98c4-2 8-2 11 0M129 98c3-2 7-2 11 0" stroke="#1c1c22" stroke-width="2" stroke-linecap="round" fill="none"/>
+</svg>

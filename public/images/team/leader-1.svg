@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Leadership portrait">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a56f0"/>
+      <stop offset="1" stop-color="#06b6c4"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" fill="url(#bg1)"/>
+  <circle cx="120" cy="86" r="110" fill="#ffffff" opacity="0.07"/>
+  <!-- shoulders -->
+  <path d="M44 240c0-44 34-72 76-72s76 28 76 72Z" fill="#eaf1ff"/>
+  <path d="M44 240c0-44 34-72 76-72s76 28 76 72Z" fill="#1f2740" opacity="0.08"/>
+  <!-- neck -->
+  <rect x="103" y="142" width="34" height="36" rx="15" fill="#f1c9a5"/>
+  <!-- head -->
+  <circle cx="120" cy="108" r="41" fill="#f6d3af"/>
+  <!-- hair -->
+  <path d="M79 108a41 41 0 0 1 82 0c0-7-5-12-7-22-5-17-22-24-34-24s-29 7-34 24c-2 10-7 15-7 22Z" fill="#2b2b35"/>
+  <!-- eyes -->
+  <circle cx="106" cy="106" r="3" fill="#2b2b35"/>
+  <circle cx="134" cy="106" r="3" fill="#2b2b35"/>
+  <!-- brows -->
+  <path d="M100 98c4-2 8-2 11 0M129 98c3-2 7-2 11 0" stroke="#2b2b35" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <!-- smile -->
+  <path d="M108 122c5 5 19 5 24 0" fill="none" stroke="#b4794f" stroke-width="2.8" stroke-linecap="round"/>
+</svg>

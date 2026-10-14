@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Zero-downtime migration illustration">
+  <defs>
+    <linearGradient id="bgF" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a56f0"/>
+      <stop offset="1" stop-color="#06b6c4"/>
+    </linearGradient>
+    <linearGradient id="cardF" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.78"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bgF)"/>
+  <g opacity="0.12" stroke="#ffffff" stroke-width="1">
+    <path d="M0 60H640M0 120H640M0 180H640M0 240H640M0 300H640"/>
+    <path d="M80 0V360M160 0V360M240 0V360M320 0V360M400 0V360M480 0V360M560 0V360"/>
+  </g>
+  <!-- on-prem server stack -->
+  <g transform="translate(70 120)">
+    <rect x="0" y="0" width="150" height="120" rx="12" fill="url(#cardF)"/>
+    <rect x="16" y="18" width="118" height="20" rx="5" fill="#1a56f0" opacity="0.85"/>
+    <rect x="16" y="50" width="118" height="20" rx="5" fill="#3377ff" opacity="0.6"/>
+    <rect x="16" y="82" width="118" height="20" rx="5" fill="#06b6c4" opacity="0.7"/>
+    <text x="75" y="-14" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">On-prem</text>
+  </g>
+  <!-- migration arrows -->
+  <g transform="translate(240 180)" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M0 0H120" />
+    <path d="M100 -14 120 0 100 14"/>
+  </g>
+  <circle cx="300" cy="150" r="6" fill="#ffffff"/>
+  <circle cx="320" cy="210" r="5" fill="#ffffff" opacity="0.8"/>
+  <!-- cloud target -->
+  <g transform="translate(410 120)">
+    <rect x="0" y="0" width="160" height="120" rx="16" fill="url(#cardF)"/>
+    <path d="M44 78a22 22 0 0 1 2-43 28 28 0 0 1 53 7 20 20 0 0 1-5 36Z" fill="#1a56f0" opacity="0.9"/>
+    <text x="80" y="-14" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">Hybrid Cloud</text>
+  </g>
+  <!-- uptime chip -->
+  <g transform="translate(70 280)">
+    <rect x="0" y="0" width="150" height="40" rx="20" fill="#ffffff" opacity="0.9"/>
+    <circle cx="24" cy="20" r="7" fill="#06b6c4"/>
+    <text x="42" y="25" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" fill="#0f204e">0 downtime</text>
+  </g>
+</svg>

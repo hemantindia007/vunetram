@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" width="640" height="280" role="img" aria-label="Cloud cost webinar cover">
+  <defs>
+    <linearGradient id="if1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#183581"/>
+      <stop offset="1" stop-color="#1a56f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="280" fill="url(#if1)"/>
+  <g opacity="0.1" stroke="#fff" stroke-width="1">
+    <path d="M0 70H640M0 140H640M0 210H640"/>
+  </g>
+  <!-- descending cost bars -->
+  <g>
+    <rect x="90" y="90" width="46" height="130" rx="8" fill="#8ec0ff"/>
+    <rect x="156" y="120" width="46" height="100" rx="8" fill="#599cff"/>
+    <rect x="222" y="150" width="46" height="70" rx="8" fill="#2ad8e0"/>
+    <rect x="288" y="172" width="46" height="48" rx="8" fill="#06b6c4"/>
+  </g>
+  <!-- downward trend -->
+  <g stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M110 100 180 130 245 160 310 182"/>
+    <path d="M296 166 312 184 290 190"/>
+  </g>
+  <!-- savings badge -->
+  <g transform="translate(410 95)">
+    <rect width="170" height="90" rx="16" fill="#fff" opacity="0.96"/>
+    <text x="20" y="42" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="900" fill="#1a56f0">-40%</text>
+    <text x="20" y="68" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="600" fill="#1f2740">cloud spend</text>
+  </g>
+</svg>
