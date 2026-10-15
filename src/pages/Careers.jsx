@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Icon from '../components/Icon'
 import Reveal from '../components/Reveal'
+import usePageMeta from '../hooks/usePageMeta'
 import { careers, company } from '../data'
 
 function Hero() {
@@ -187,6 +188,12 @@ function CTA() {
 }
 
 export default function Careers() {
+  usePageMeta({
+    title: 'Careers | Vunetram Technologies',
+    description:
+      'Join Vunetram Technologies. We are hiring cloud, DevOps, SRE, and AI engineers who love automation, clean systems, and shipping to production.',
+  })
+
   return (
     <>
       <Hero />

@@ -2,13 +2,46 @@ import { useState } from 'react'
 import Icon from '../components/Icon'
 import { company } from '../data'
 
-export default function Contact() {
-  const [sent, setSent] = useState(false)
+// Set your Formspree form endpoint here (create a free form at formspree.io).
+// Example: 'https://formspree.io/f/abcdwxyz'. You can also set it via a Vite
+// env var VITE_CONTACT_ENDPOINT in a .env file.
+const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || ''
 
-  const handleSubmit = (e) => {
+export default function Contact() {
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const sent = status === 'sent'
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // No backend wired up yet — swap this for your form handler / API endpoint.
-    setSent(true)
+    const form = e.currentTarget
+    const data = new FormData(form)
+
+    // No endpoint configured yet — show success optimistically so the UI works,
+    // but log a hint for the developer. Replace CONTACT_ENDPOINT to send for real.
+    if (!CONTACT_ENDPOINT) {
+      console.warn(
+        'Contact form: set CONTACT_ENDPOINT (or VITE_CONTACT_ENDPOINT) to a Formspree URL to receive submissions.',
+      )
+      setStatus('sent')
+      return
+    }
+
+    setStatus('sending')
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      })
+      if (res.ok) {
+        setStatus('sent')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -86,10 +119,19 @@ export default function Contact() {
                       className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
                     />
                   </div>
-                  <button type="submit" className="btn-primary w-full">
-                    Send message
-                    <Icon name="arrow" className="h-4 w-4" />
+                  <button
+                    type="submit"
+                    disabled={status === 'sending'}
+                    className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {status === 'sending' ? 'Sending…' : 'Send message'}
+                    {status !== 'sending' && <Icon name="arrow" className="h-4 w-4" />}
                   </button>
+                  {status === 'error' && (
+                    <p className="text-center text-xs font-medium text-red-600">
+                      Something went wrong. Please email us at {company.email}.
+                    </p>
+                  )}
                   <p className="text-center text-xs text-slate-400">
                     By submitting, you agree to be contacted about your enquiry.
                   </p>
