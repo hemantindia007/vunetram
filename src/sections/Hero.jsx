@@ -1,4 +1,5 @@
 import Icon from '../components/Icon'
+import CommandCenter from '../components/CommandCenter'
 import useCarousel from '../hooks/useCarousel'
 import { heroSlides } from '../data'
 
@@ -135,38 +136,7 @@ export default function Hero() {
 
           {/* card + floating badges share this relative box so badges sit on the card corners */}
           <div className="relative animate-float">
-            <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-[0_30px_60px_-20px_rgba(15,32,78,0.3)]">
-              <div className="flex items-center gap-2 border-b border-slate-100 pb-4">
-                <span className="h-3 w-3 rounded-full bg-red-400" />
-                <span className="h-3 w-3 rounded-full bg-yellow-400" />
-                <span className="h-3 w-3 rounded-full bg-green-400" />
-                <span className="ml-3 text-xs font-medium text-slate-400">vunetram // platform-health</span>
-              </div>
-              <div className="mt-4 space-y-3">
-                {[
-                  ['API Gateway', '100%'],
-                  ['Kubernetes Cluster', '98%'],
-                  ['GenAI Service (Bedrock)', '99%'],
-                  ['Hybrid Link (on-prem)', '100%'],
-                ].map(([name, pct]) => (
-                  <div key={name} className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-100">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="font-semibold text-ink-900">{name}</span>
-                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
-                        <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                        Healthy
-                      </span>
-                    </div>
-                    <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
-                      <div
-                        className="h-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500"
-                        style={{ width: pct }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <CommandCenter />
 
             {/* floating badges anchored to the card's top-left and bottom-right corners */}
             <div className="absolute -left-4 -top-4 flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-lg">

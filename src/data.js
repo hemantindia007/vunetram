@@ -17,6 +17,51 @@ export const nav = [
   { label: 'Insights', href: '#insights' },
 ]
 
+// Mega-menu structure for the dropdown navbar.
+// Each item has an icon + one-line description so the menu is scannable.
+export const megaMenu = [
+  {
+    label: 'Solutions',
+    width: 'wide',
+    items: [
+      { label: 'AI & GenAI Modernization', desc: 'RAG, LLM apps & agents to production', href: '/#services', icon: 'ai' },
+      { label: 'Cloud Migration', desc: 'Move to AWS, Azure or GCP, zero-downtime', href: '/#services', icon: 'cloud' },
+      { label: 'Hybrid Cloud', desc: 'Unify on-prem and multi-cloud estates', href: '/#services', icon: 'hybrid' },
+      { label: 'DevOps & Automation', desc: 'CI/CD, IaC and GitOps delivery', href: '/#services', icon: 'devops' },
+      { label: 'Observability', desc: 'Metrics, logs, traces & SLOs', href: '/#services', icon: 'monitor' },
+      { label: 'Managed Cloud', desc: '24x7 run, optimize and support', href: '/#services', icon: 'check' },
+    ],
+    featured: {
+      eyebrow: 'Featured',
+      title: 'From pilot to production AI',
+      text: 'See how we ship GenAI with guardrails in weeks, not quarters.',
+      href: '/#work',
+    },
+  },
+  {
+    label: 'Industries',
+    items: [
+      { label: 'BFSI & Fintech', desc: 'Secure, compliant cloud', href: '/#industries', icon: 'bank' },
+      { label: 'Healthcare', desc: 'Resilient, auditable systems', href: '/#industries', icon: 'health' },
+      { label: 'Retail & E-commerce', desc: 'Scale for peak traffic', href: '/#industries', icon: 'cart' },
+      { label: 'Manufacturing', desc: 'Modernize operations', href: '/#industries', icon: 'factory' },
+      { label: 'Media & SaaS', desc: 'Ship features faster', href: '/#industries', icon: 'media' },
+      { label: 'Logistics', desc: 'Reliable, real-time data', href: '/#industries', icon: 'truck' },
+    ],
+  },
+  {
+    label: 'Company',
+    items: [
+      { label: 'About Vunetram', desc: 'Our mission and approach', href: '/#about', icon: 'spark' },
+      { label: 'Leadership', desc: 'The people behind the work', href: '/#leadership', icon: 'check' },
+      { label: 'Technology', desc: 'The stack we build on', href: '/#stack', icon: 'devops' },
+      { label: 'Case Studies', desc: 'Real outcomes, real numbers', href: '/#work', icon: 'monitor' },
+      { label: 'Insights', desc: 'Blog, guides & events', href: '/#insights', icon: 'media' },
+      { label: 'Careers', desc: 'Build the cloud with us', href: '/careers', icon: 'cloud' },
+    ],
+  },
+]
+
 export const heroSlides = [
   {
     eyebrow: 'AI & GenAI Modernization',

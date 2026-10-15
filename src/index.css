@@ -8,7 +8,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 8.5rem;
+  scroll-padding-top: 7rem;
 }
 
 body {
@@ -144,6 +144,34 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-wing-flap { animation: none; }
   .feather { animation: none; }
+}
+
+/* Command-center tile animations */
+@keyframes ring-fill {
+  from { stroke-dashoffset: var(--circ); }
+  to   { stroke-dashoffset: var(--off); }
+}
+@keyframes meter-pulse {
+  0%, 100% { width: 62%; }
+  50%      { width: 88%; }
+}
+@keyframes bar-rise {
+  from { transform: scaleY(0.3); }
+  to   { transform: scaleY(1); }
+}
+@keyframes dot-run {
+  0%   { left: 0%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+.cc-ring circle.val { animation: ring-fill 1.8s ease-out forwards; }
+.cc-meter { animation: meter-pulse 3.5s ease-in-out infinite; }
+.cc-bar { transform-origin: bottom; animation: bar-rise 1s ease-out backwards; }
+.cc-dot { animation: dot-run 2.6s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-ring circle.val, .cc-meter, .cc-bar, .cc-dot { animation: none; }
 }
 
 /* Slow drifting glow for hero orbs */
