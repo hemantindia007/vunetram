@@ -59,6 +59,7 @@ Formspree, Resend, or your own API endpoint).
 ## Branding
 
 Brand colors and fonts are defined in `tailwind.config.js` under
-`theme.extend.colors` (`brand`, `accent`, `ink`). Swap the logo mark in
-`Navbar.jsx` / `Footer.jsx` and `public/favicon.svg` when you have your own logo.
+`theme.extend.colors` (`brand`, `accent`, `ink`). The logo lives at
+`public/logo.png` (also used as the favicon and social image); replace that
+file to swap in your own logo.
 ```
