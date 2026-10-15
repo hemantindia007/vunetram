@@ -34,14 +34,14 @@ function MenuRow({ item, onClick }) {
     <Link
       to={item.href}
       onClick={onClick}
-      className="group/row flex items-start gap-3 rounded-xl p-3 transition hover:bg-brand-50"
+      className="group/row flex items-start gap-2.5 rounded-lg px-3 py-2 transition hover:bg-brand-50"
     >
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-brand-50 to-white text-brand-600 ring-1 ring-black/5 transition group-hover/row:from-brand-600 group-hover/row:to-accent-500 group-hover/row:text-white">
-        <Icon name={item.icon} className="h-4.5 w-4.5" />
+      <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-brand-50 to-white text-brand-600 ring-1 ring-black/5 transition group-hover/row:from-brand-600 group-hover/row:to-accent-500 group-hover/row:text-white">
+        <Icon name={item.icon} className="h-4 w-4" />
       </span>
       <span className="min-w-0">
-        <span className="block text-sm font-semibold text-ink-900">{item.label}</span>
-        <span className="block text-xs text-slate-500">{item.desc}</span>
+        <span className="block text-[13px] font-semibold leading-tight text-ink-900">{item.label}</span>
+        <span className="block text-[11px] leading-tight text-slate-500">{item.desc}</span>
       </span>
     </Link>
   )
@@ -83,18 +83,35 @@ function DesktopMenu({ item }) {
       >
         <div
           className={`relative overflow-hidden rounded-2xl border border-white/70 bg-white/95 shadow-[0_24px_60px_-18px_rgba(15,32,78,0.35)] backdrop-blur-2xl ${
-            wide ? 'w-[720px]' : 'w-[400px]'
+            wide ? 'w-[900px]' : 'w-[400px]'
           }`}
         >
           <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-500 to-accent-500" />
 
-          <div className={`grid ${wide ? 'grid-cols-[1.4fr_1fr]' : 'grid-cols-1'}`}>
-            {/* link grid */}
-            <div className="grid grid-cols-2 gap-1 p-4">
-              {item.items.map((it) => (
-                <MenuRow key={it.label} item={it} onClick={() => setOpen(false)} />
-              ))}
-            </div>
+          <div className={`grid ${wide ? 'grid-cols-[1fr_240px]' : 'grid-cols-1'}`}>
+            {/* link area: grouped (with sub-headings) or flat grid */}
+            {item.groups ? (
+              <div className="grid grid-cols-3 gap-x-4 gap-y-5 p-5">
+                {item.groups.map((g) => (
+                  <div key={g.heading}>
+                    <p className="mb-1 px-3 text-[11px] font-bold uppercase tracking-wider text-brand-700">
+                      {g.heading}
+                    </p>
+                    <div className="space-y-0.5">
+                      {g.items.map((it) => (
+                        <MenuRow key={it.label} item={it} onClick={() => setOpen(false)} />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-1 p-4">
+                {item.items.map((it) => (
+                  <MenuRow key={it.label} item={it} onClick={() => setOpen(false)} />
+                ))}
+              </div>
+            )}
 
             {/* featured tile */}
             {item.featured && (
@@ -126,6 +143,11 @@ function DesktopMenu({ item }) {
 /* ---------- Mobile accordion ---------- */
 function MobileMenu({ item, onNavigate }) {
   const [open, setOpen] = useState(false)
+  // Flatten grouped solutions into labeled sections for mobile.
+  const sections = item.groups
+    ? item.groups.map((g) => ({ heading: g.heading, items: g.items }))
+    : [{ heading: null, items: item.items }]
+
   return (
     <div className="border-b border-slate-100 last:border-0">
       <button
@@ -138,25 +160,36 @@ function MobileMenu({ item, onNavigate }) {
         <Chevron open={open} />
       </button>
       {open && (
-        <ul className="pb-2">
-          {item.items.map((it) => (
-            <li key={it.label}>
-              <Link
-                to={it.href}
-                onClick={onNavigate}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-brand-50"
-              >
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-600">
-                  <Icon name={it.icon} className="h-4 w-4" />
-                </span>
-                <span>
-                  <span className="block text-sm font-medium text-ink-800">{it.label}</span>
-                  <span className="block text-xs text-slate-500">{it.desc}</span>
-                </span>
-              </Link>
-            </li>
+        <div className="pb-2">
+          {sections.map((sec, si) => (
+            <div key={si}>
+              {sec.heading && (
+                <p className="px-3 pb-1 pt-3 text-[11px] font-bold uppercase tracking-wider text-brand-700">
+                  {sec.heading}
+                </p>
+              )}
+              <ul>
+                {sec.items.map((it) => (
+                  <li key={it.label}>
+                    <Link
+                      to={it.href}
+                      onClick={onNavigate}
+                      className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-brand-50"
+                    >
+                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-600">
+                        <Icon name={it.icon} className="h-4 w-4" />
+                      </span>
+                      <span>
+                        <span className="block text-sm font-medium text-ink-800">{it.label}</span>
+                        <span className="block text-xs text-slate-500">{it.desc}</span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   )

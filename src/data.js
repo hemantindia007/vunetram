@@ -23,13 +23,33 @@ export const megaMenu = [
   {
     label: 'Solutions',
     width: 'wide',
-    items: [
-      { label: 'AI & GenAI Modernization', desc: 'RAG, LLM apps & agents to production', href: '/#services', icon: 'ai' },
-      { label: 'Cloud Migration', desc: 'Move to AWS, Azure or GCP, zero-downtime', href: '/#services', icon: 'cloud' },
-      { label: 'Hybrid Cloud', desc: 'Unify on-prem and multi-cloud estates', href: '/#services', icon: 'hybrid' },
-      { label: 'DevOps & Automation', desc: 'CI/CD, IaC and GitOps delivery', href: '/#services', icon: 'devops' },
-      { label: 'Observability', desc: 'Metrics, logs, traces & SLOs', href: '/#services', icon: 'monitor' },
-      { label: 'Managed Cloud', desc: '24x7 run, optimize and support', href: '/#services', icon: 'check' },
+    groups: [
+      {
+        heading: 'Advise & Migrate',
+        items: [
+          { label: 'Cloud Strategy & Assessment', desc: 'Readiness, TCO & roadmap', href: '/#services', icon: 'spark' },
+          { label: 'Cloud Migration', desc: 'AWS, Azure or GCP, zero-downtime', href: '/#services', icon: 'cloud' },
+          { label: 'Hybrid Cloud', desc: 'Unify on-prem & multi-cloud', href: '/#services', icon: 'hybrid' },
+          { label: 'Application Modernization', desc: 'Monolith to microservices', href: '/#services', icon: 'layers' },
+        ],
+      },
+      {
+        heading: 'Build & Automate',
+        items: [
+          { label: 'AI & GenAI Modernization', desc: 'RAG, LLM apps & agents', href: '/#services', icon: 'ai' },
+          { label: 'DevOps & Automation', desc: 'CI/CD, IaC & GitOps', href: '/#services', icon: 'devops' },
+          { label: 'Data & Analytics', desc: 'Pipelines, lakes & BI', href: '/#services', icon: 'data' },
+          { label: 'Observability', desc: 'Metrics, logs, traces & SLOs', href: '/#services', icon: 'monitor' },
+        ],
+      },
+      {
+        heading: 'Secure & Optimize',
+        items: [
+          { label: 'Cloud Security & Compliance', desc: 'IAM, posture & ISO/SOC2', href: '/#services', icon: 'shield' },
+          { label: 'FinOps & Cost Optimization', desc: 'Right-size & govern spend', href: '/#services', icon: 'coins' },
+          { label: 'Managed Cloud', desc: '24x7 run, optimize & support', href: '/#services', icon: 'check' },
+        ],
+      },
     ],
     featured: {
       eyebrow: 'Featured',
@@ -107,11 +127,11 @@ export const heroSlides = [
 
 export const services = [
   {
-    title: 'AI & GenAI Modernization',
+    title: 'Cloud Strategy & Assessment',
     description:
-      'Take AI from pilot to production. We build RAG pipelines, LLM apps, and agentic workflows, with the MLOps and guardrails to run them safely at scale.',
-    points: ['GenAI & RAG solution design', 'LLMOps / MLOps pipelines', 'Amazon Bedrock, Azure OpenAI, Vertex AI'],
-    icon: 'ai',
+      'Start with a clear plan. We assess your estate, costs, and risks, then hand you a pragmatic migration and modernization roadmap.',
+    points: ['Readiness & risk assessment', 'TCO & business case', 'Target architecture & roadmap'],
+    icon: 'spark',
   },
   {
     title: 'Cloud Migration',
@@ -128,6 +148,20 @@ export const services = [
     icon: 'hybrid',
   },
   {
+    title: 'Application Modernization',
+    description:
+      'Move from brittle monoliths to cloud-native services. We containerize, re-platform, and refactor apps for scale and speed.',
+    points: ['Monolith to microservices', 'Containerization & Kubernetes', 'API-first re-platforming'],
+    icon: 'layers',
+  },
+  {
+    title: 'AI & GenAI Modernization',
+    description:
+      'Take AI from pilot to production. We build RAG pipelines, LLM apps, and agentic workflows, with the MLOps and guardrails to run them safely at scale.',
+    points: ['GenAI & RAG solution design', 'LLMOps / MLOps pipelines', 'Amazon Bedrock, Azure OpenAI, Vertex AI'],
+    icon: 'ai',
+  },
+  {
     title: 'DevOps Delivery & Support',
     description:
       'Build CI/CD pipelines, infrastructure as code, and automated release workflows — then run them with 24x7 managed support.',
@@ -135,11 +169,39 @@ export const services = [
     icon: 'devops',
   },
   {
+    title: 'Data & Analytics',
+    description:
+      'Turn data into decisions. We build pipelines, lakes, and warehouses with BI and ML-ready foundations on the cloud.',
+    points: ['Data lakes & warehouses', 'ETL / ELT pipelines', 'BI dashboards & ML-ready data'],
+    icon: 'data',
+  },
+  {
     title: 'Monitoring & Observability',
     description:
       'Full-stack visibility with metrics, logs, and traces. Dashboards, alerting, and SLOs so you catch issues before customers do.',
     points: ['Metrics, logs & distributed tracing', 'SLOs, alerting & on-call', 'Prometheus, Grafana, ELK, Datadog'],
     icon: 'monitor',
+  },
+  {
+    title: 'Cloud Security & Compliance',
+    description:
+      'Security built in from day one. Least-privilege access, encryption, and posture management aligned to frameworks like ISO 27001 and SOC 2.',
+    points: ['IAM & least-privilege access', 'Posture & vulnerability management', 'ISO 27001 / SOC 2 readiness'],
+    icon: 'shield',
+  },
+  {
+    title: 'FinOps & Cost Optimization',
+    description:
+      'Cut cloud spend without cutting corners. We right-size, autoscale, and put spend governance in place so costs stay predictable.',
+    points: ['Right-sizing & autoscaling', 'Spend visibility & budgets', 'Reserved & savings-plan strategy'],
+    icon: 'coins',
+  },
+  {
+    title: 'Managed Cloud Services',
+    description:
+      'Hand off the run. We operate, patch, optimize, and support your cloud 24x7 — with your team fully in the loop.',
+    points: ['24x7 managed operations', 'Patching & optimization', 'Shared on-call & documentation'],
+    icon: 'check',
   },
 ]
 
